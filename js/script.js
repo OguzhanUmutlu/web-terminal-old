@@ -711,7 +711,15 @@ const runScript = async (code, {piping = false, print, printChar, isTerminal = f
         const toRun = parseLine(line);
         if (toRun === QuoteNotEnd) {
             onEnd();
-            return writeText("Expected a quote.\n", {}, true);
+            return writeText("Expected a `\"`.\n", {}, true);
+        }
+        if (toRun === UnexpectedAnd) {
+            onEnd();
+            return writeText("Unexpected `&&`.\n", {}, true);
+        }
+        if (toRun === UnexpectedPipe) {
+            onEnd();
+            return writeText("Unexpected `|`.\n", {}, true);
         }
         for (let j = 0; j < toRun.length; j++) {
             if (terminated) break;

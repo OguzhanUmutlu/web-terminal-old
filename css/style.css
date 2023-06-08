@@ -1,0 +1,150 @@
+:root {
+    --terminal-content: #1e1e1e;
+    --terminal-frame: #363636;
+    --terminal-frame-red: #ff5f57;
+    --terminal-frame-yellow: #febc2e;
+    --terminal-frame-green: #28c840;
+    --terminal-text: #b2b2b2;
+
+    --container-font-size: 14px;
+    --frame-title-font-size: 16px;
+    --cursor-width: 1px;
+    --cursor-height: 15px;
+    --button-size: 14px;
+    --frame-height: 20px;
+    --button-left: 5px;
+    --button-top: 4px;
+    --button-margin: 5px;
+    --terminal-border-radius: 10px;
+    --container-height-add: 20px;
+}
+
+* {
+    user-select: none;
+    color: var(--terminal-text);
+}
+
+@font-face {
+    font-family: FallingSky;
+    src: url("../assets/fonts/FallingSky.otf");
+}
+
+body {
+    margin: 0;
+    overflow: hidden;
+    background-color: #717377;
+}
+
+.terminal {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    translate: -50% -50%;
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+    min-width: 500px;
+    min-height: 500px;
+    background: var(--terminal-content);
+    border-radius: var(--terminal-border-radius);
+    overflow: hidden;
+}
+
+.buttons {
+    position: absolute;
+    left: var(--button-left);
+    top: var(--button-top);
+    display: flex;
+}
+
+.buttons > div {
+    width: var(--button-size);
+    height: var(--button-size);
+    margin: var(--button-margin);
+    border-radius: 50%;
+}
+
+.red {
+    background: var(--terminal-frame-red);
+}
+
+.yellow {
+    background: var(--terminal-frame-yellow);
+}
+
+.green {
+    background: var(--terminal-frame-green);
+}
+
+.frame {
+    height: var(--frame-height);
+    width: 100%;
+    background: var(--terminal-frame);
+    padding: 5px;
+    text-align: center;
+}
+
+.title {
+    font-family: FallingSky, serif;
+    font-size: var(--frame-title-font-size);
+}
+
+.container {
+    padding: 10px;
+    font-size: var(--container-font-size);
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: calc(100% - 30px - var(--container-height-add));
+}
+
+.container > .line {
+    font-family: monospace, serif !important;
+    display: flex;
+    flex-wrap: wrap;
+    user-select: text;
+}
+
+.container > .line > .char {
+    user-select: text;
+}
+
+.cursor {
+    margin-right: 1px;
+    width: var(--cursor-width);
+    height: var(--cursor-height);
+}
+
+.flickering {
+    animation-name: flickering;
+    animation-iteration-count: infinite;
+    animation-duration: .5s;
+}
+
+@keyframes flickering {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #777;
+}
